@@ -65,61 +65,74 @@ const images = [
 ];
 
 // export default images;
-
 const galleryContainer = document.querySelector('.gallery');
-const markup = `<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
+const markup = images.map (({preview, original, description}) => `<li class="gallery-item">
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
-</li>`;
+</li>`).join('');
 galleryContainer.innerHTML = markup;
- galleryContainer.event.defaultPrevented;
 
-galleryContainer.markup = createGalleryItemsMarkup(images);
+galleryContainer.addEventListener ('click', onGalleryContainerClick);
 
-const picture = images.map(({ preview, original, description }) => {
-markup.replace('small-image.jpg', preview)
-      .replace('large-image.jpg', original)
-      .replace('Image description', description);
-});
+function onGalleryContainerClick (event) {
+  event.preventDefault ();
 
-markup = galleryContainer.insertAdjacentHTML('beforeend', picture.join(''));
+  const isGalleryImage = event.target.classList.contains ('ul.gallery');
+  if (!isGalleryImage) {
+    return;
+  };
+  const originalImageURL = event.target.dataset.source;
+  openModal (originalImageURL);
+};
+
+function openModal (images) {
+  if (onGalleryContainerClick === true) {
+  const instance = basicLightbox.create(`
+    <div class="modal">
+        <img src=${images.original} width="800" height="600">
+    </div>
+`);
+
+instance.show();
+  }
+};
+
+const modal = document.querySelector('.modal');
+
+function onModalClick (event) {
+  if (event.target === event.currentTarget) {
+    closeModal ();
+  }
+};
+
+function closeModal () {
+  instance.close ();
+}
 
 
+// import * as basicLightbox from 'basiclightbox'
 
-// const onItemClick = event => {
-//   event.preventDefault();
-//     if (event.target.nodeName !== 'IMG') {
-//         return;
+// document.querySelector('gallery-item').onclick = () => {
+
+// 	basicLightbox.create(`
+// 		<img width="1400" height="900" src="${original}">
+// 	`).show()
+
+// }
+// function openModal (original) {
+//   const instance = basicLightbox.create(`
+//     <img src="${original}" width="800" height="600">
+//   `);
+//   instance.show();
+ 
+//     if (openModal === 'Escape') {
+//       instance.close();
 //     }
-//     console.log(event.target);
-// };
+//   };
 
-// galleryContainer.addEventListener('click', onItemClick);
-
-
-  
-// const galleryItems = addEventListener('click', onItemClick() => {
-//   event.preventDefault();
-
-// const result = markup.cloneNode(true);
-// galleryContainer.appendChild(result);
-// for (let i = 0; i < images.length; i += 1) {
-//   const img = document.createElement('img');
-//   img.src = images[i].preview;
-//     img.alt = images[i].description;
-//     galleryContainer.appendChild(img);
-// };
-
-
-
-// galleryContainer.innerHTML = galleryItemsMarkup;    
-// function createGalleryItemsMarkup(images) {
-//   return images
-//     .map(({ preview, original, description }) => {  
-//           return `
