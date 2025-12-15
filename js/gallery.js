@@ -83,16 +83,12 @@ galleryContainer.addEventListener ('click', onGalleryContainerClick);
 function onGalleryContainerClick (event) {
   event.preventDefault ();
 
-  const isGalleryImage = event.target.classList.contains ('ul.gallery');
+  const isGalleryImage = event.target.classList.contains ('.gallery');
   if (!isGalleryImage) {
     return;
   };
   const originalImageURL = event.target.dataset.source;
   openModal (originalImageURL);
-};
-
-function openModal (images) {
-  if (onGalleryContainerClick === true) {
   const instance = basicLightbox.create(`
     <div class="modal">
         <img src=${images.original} width="800" height="600">
@@ -100,39 +96,32 @@ function openModal (images) {
 `);
 
 instance.show();
-  }
 };
 
-const modal = document.querySelector('.modal');
 
-function onModalClick (event) {
-  if (event.target === event.currentTarget) {
-    closeModal ();
-  }
-};
-
-function closeModal () {
-  instance.close ();
-}
-
-
-// import * as basicLightbox from 'basiclightbox'
-
-// document.querySelector('gallery-item').onclick = () => {
-
-// 	basicLightbox.create(`
-// 		<img width="1400" height="900" src="${original}">
-// 	`).show()
-
-// }
-// function openModal (original) {
+// function openModal (images) {
+//   if (onGalleryContainerClick === true) {
 //   const instance = basicLightbox.create(`
-//     <img src="${original}" width="800" height="600">
-//   `);
-//   instance.show();
- 
-//     if (openModal === 'Escape') {
-//       instance.close();
-//     }
-//   };
+//     <div class="modal">
+//         <img src=${images.original} width="800" height="600">
+//     </div>
+// `);
+
+// instance.show();
+//   }
+// };
+
+// const modal = document.querySelector('.modal');
+
+// function onModalClick (event) {
+//   if (event.target === event.currentTarget) {
+//     closeModal ();
+//   }
+// };
+
+// function closeModal () {
+//   instance.close ();
+// }
+
+
 
