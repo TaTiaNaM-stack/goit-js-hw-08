@@ -83,15 +83,15 @@ galleryContainer.addEventListener ('click', onGalleryContainerClick);
 function onGalleryContainerClick (event) {
   event.preventDefault ();
 
-  const isGalleryImage = event.target.classList.contains ('.gallery');
+  const isGalleryImage = event.target.classList.contains ('.gallery-image');
   if (!isGalleryImage) {
     return;
   };
   const originalImageURL = event.target.dataset.source;
-  openModal (originalImageURL);
+  
   const instance = basicLightbox.create(`
     <div class="modal">
-        <img src=${images.original} width="800" height="600">
+        <img src=${originalImageURL} width="800" height="600">
     </div>
 `);
 
