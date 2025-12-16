@@ -99,29 +99,3 @@ instance.show();
 };
 
 
-// function openModal (images) {
-//   if (onGalleryContainerClick === true) {
-//   const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <img src=${images.original} width="800" height="600">
-//     </div>
-// `);
-
-// instance.show();
-//   }
-// };
-
-// const modal = document.querySelector('.modal');
-
-// function onModalClick (event) {
-//   if (event.target === event.currentTarget) {
-//     closeModal ();
-//   }
-// };
-
-// function closeModal () {
-//   instance.close ();
-// }
-
-
-
