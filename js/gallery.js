@@ -83,7 +83,7 @@ galleryContainer.addEventListener ('click', onGalleryContainerClick);
 function onGalleryContainerClick (event) {
   event.preventDefault ();
 
-  const isGalleryImage = event.target.classList.contains ('.gallery-image');
+  const isGalleryImage = event.target.classList.contains ('gallery-image');
   if (!isGalleryImage) {
     return;
   };
